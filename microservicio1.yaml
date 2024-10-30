@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: microservicio1-v1
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      role: backend
+      version: "1.0"
+  template:
+    metadata:
+      labels:
+        role: backend
+        version: "1.0"
+    spec:
+      containers:
+      - name: microservicio1
+        image: samimimun1/microservicio1:1.0
+        ports:
+        - containerPort: 3000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: microservicio1-v2
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      role: backend
+      version: "2.0"
+  template:
+    metadata:
+      labels:
+        role: backend
+        version: "2.0"
+    spec:
+      containers:
+      - name: microservicio1
+        image: samimimun1/microservicio1:2.0
+        ports:
+        - containerPort: 3000
